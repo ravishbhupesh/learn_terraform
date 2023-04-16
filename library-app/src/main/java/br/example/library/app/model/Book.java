@@ -1,70 +1,95 @@
 package br.example.library.app.model;
 
+import java.sql.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "book")
 public class Book {
 
 	private String title;
-	private String bookId;
+	private Long bookId;
 	private String isbn13;
-	private String languageId;
-	private String numPages;
-	private String publicationDate;
-	private String publisherId;
-	
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getBookId() {
-		return bookId;
-	}
-	public void setBookId(String bookId) {
-		this.bookId = bookId;
-	}
-	public String getIsbn13() {
-		return isbn13;
-	}
-	public void setIsbn13(String isbn13) {
-		this.isbn13 = isbn13;
-	}
-	public String getLanguageId() {
-		return languageId;
-	}
-	public void setLanguageId(String languageId) {
-		this.languageId = languageId;
-	}
-	public String getNumPages() {
-		return numPages;
-	}
-	public void setNumPages(String numPages) {
-		this.numPages = numPages;
-	}
-	public String getPublicationDate() {
-		return publicationDate;
-	}
-	public void setPublicationDate(String publicationDate) {
-		this.publicationDate = publicationDate;
-	}
-	public String getPublisherId() {
-		return publisherId;
-	}
-	public void setPublisherId(String publisherId) {
-		this.publisherId = publisherId;
-	}
+	private Long languageId;
+	private int numPages;
+	private Date publicationDate;
+	private Long publisherId;
 	
 	public String toString() {
 		return "Book : {"
-				+ "title : " + this.title + ","
-				+ "	bookId : " + this.bookId + ","
-				+ "	isbn13 : " + this.isbn13 + ","
-				+ "	languageId : " + this.languageId + ","
-				+ "	numPages : " + this.numPages + ","
-				+ "	publicationDate" + this.publicationDate + ","
-				+ "	publisherId : " + this.publisherId + ","
+				+ "\t title : " + this.title + ",\n"
+				+ "\t bookId : " + this.bookId + ",\n"
+				+ "\t isbn13 : " + this.isbn13 + ",\n"
+				+ "\t languageId : " + this.languageId + ",\n"
+				+ "\t numPages : " + this.numPages + ",\n"
+				+ "\t publicationDate" + this.publicationDate + ",\n"
+				+ "\t publisherId : " + this.publisherId + ",\n"
 				+ "}";
+	}
+
+	@Column(name = "title")
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	@Column(name = "book_id")
+	public Long getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(Long bookId) {
+		this.bookId = bookId;
+	}
+
+	@Column(name = "isbn13")
+	public String getIsbn13() {
+		return isbn13;
+	}
+
+	public void setIsbn13(String isbn13) {
+		this.isbn13 = isbn13;
+	}
+
+	@Column(name = "language_id")
+	public Long getLanguageId() {
+		return languageId;
+	}
+
+	public void setLanguageId(Long languageId) {
+		this.languageId = languageId;
+	}
+
+	@Column(name = "num_pages")
+	public int getNumPages() {
+		return numPages;
+	}
+
+	public void setNumPages(int numPages) {
+		this.numPages = numPages;
+	}
+
+	@Column(name = "publication_date")
+	public Date getPublicationDate() {
+		return publicationDate;
+	}
+
+	public void setPublicationDate(Date publicationDate) {
+		this.publicationDate = publicationDate;
+	}
+
+	@Column(name = "publisher_id")
+	public Long getPublisherId() {
+		return publisherId;
+	}
+
+	public void setPublisherId(Long publisherId) {
+		this.publisherId = publisherId;
 	}
 }
