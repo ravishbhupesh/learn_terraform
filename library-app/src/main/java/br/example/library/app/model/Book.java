@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -39,6 +40,7 @@ public class Book {
 		this.title = title;
 	}
 
+	@Id
 	@Column(name = "book_id")
 	public Long getBookId() {
 		return bookId;
