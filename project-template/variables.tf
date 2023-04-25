@@ -40,3 +40,15 @@ variable "map_public_ip_on_launch" {
     description = "Map public IP for subnet associations"
     default = true
 }
+
+variable "company" {
+  type = string
+  description = "Company name for resource tagging"
+  default = "Infosys"
+}
+
+variable "project" {
+  type = string
+  description = "Project name for resource tagging"
+  default = "Project-Template"
+}

@@ -24,11 +24,15 @@ data "aws_ssm_parameter" "ami" {
 resource "aws_vpc" "vpc" {
     cidr_block = "10.0.0.0/16"
     enable_dns_hostnames = true
+
+    tags = local.app_tags
 }
 
 # Internet Gateway
 resource "aws_internet_gateway" "igw" {
     vpc_id = aws_vpc.vpc.id
+
+    tags = local.app_tags
 }
 
 # Subnets
@@ -36,24 +40,32 @@ resource "aws_subnet" "pub-sub-1" {
     cidr_block = "10.0.1.0/24"
     vpc_id = aws_vpc.vpc.id
     map_public_ip_on_launch = true
+
+    tags = local.app_tags
 }
 
 resource "aws_subnet" "pub-sub-2" {
     cidr_block = "10.0.2.0/24"
     vpc_id = aws_vpc.vpc.id
     map_public_ip_on_launch = true
+
+    tags = local.app_tags
 }
 
 resource "aws_subnet" "pvt-sub-1" {
     cidr_block = "10.0.3.0/24"
     vpc_id = aws_vpc.vpc.id
     map_public_ip_on_launch = false
+
+    tags = local.app_tags
 }
 
 resource "aws_subnet" "pvt-sub-2" {
     cidr_block = "10.0.4.0/24"
     vpc_id = aws_vpc.vpc.id
     map_public_ip_on_launch = false
+
+    tags = local.app_tags
 }
 
 # Route Table
@@ -63,6 +75,8 @@ resource "aws_route_table" "rtb" {
       cidr_block = "0.0.0.0/0"
       gateway_id = aws_internet_gateway.igw.id
     } 
+
+    tags = local.app_tags
 }
 
 resource "aws_route_table_association" "rta-pub-sub-1" {
@@ -93,6 +107,8 @@ resource "aws_security_group" "sg-web" {
         protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     } 
+
+    tags = local.app_tags
 }
 
 resource "aws_instance" "nginx" {
@@ -108,4 +124,6 @@ sudo service nginx start
 sudo rm /usr/share/nginx/html/index.html
 echo '<html><head><title>Taco Team Server</title></head><body style=\"background-color:#1F778D\"><p style=\"text-align: center;\"><span style=\"color:#FFFFFF;\"><span style=\"font-size:28px;\">You did it! Have a &#127790;</span></span></p></body></html>' | sudo tee /usr/share/nginx/html/index.html
 EOF
+
+    tags = local.app_tags
 }
