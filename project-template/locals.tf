@@ -6,10 +6,11 @@ resource "random_integer" "rand" {
 
 locals {
   common_tags = {
-    company      = var.company
-    project      = "${var.company}-${var.project}"
+    company     = var.company
+    project     = "${var.company}-${var.project}"
+    environment = terraform.workspace
   }
 
-  name_prefix    = "${var.naming_prefix}-dev"
+  name_prefix    = "${var.naming_prefix}-${terraform.workspace}"
   s3_bucket_name = lower("${local.name_prefix}-${random_integer.rand.result}")
 }
