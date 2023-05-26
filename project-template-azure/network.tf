@@ -46,12 +46,3 @@ resource "azurerm_subnet_network_security_group_association" "vnet-subnet-ntwk-s
   subnet_id                 = azurerm_subnet.vnet-subnet.id
   network_security_group_id = azurerm_network_security_group.ntwk-sg.id
 }
-
-resource "azurerm_public_ip" "vm-ip" {
-  name                = "vm-ip"
-  resource_group_name = azurerm_resource_group.ntwk-rg.name
-  location            = azurerm_resource_group.ntwk-rg.location
-  allocation_method   = "Dynamic"
-
-  tags = local.common_tags
-}
